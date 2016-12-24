@@ -1,39 +1,35 @@
 {
-  "name": "sa-seguin-isd-front-end",
+  "name": "sb-admin",
   "version": "0.0.0",
   "dependencies": {
-    "angular": "^1.4.0",
-    "bootstrap-sass-official": "^3.2.0",
-    "angular-animate": "^1.4.0",
-    "angular-cookies": "^1.4.0",
-    "angular-resource": "^1.4.0",
-    "angular-route": "^1.4.0",
-    "angular-sanitize": "^1.4.0",
-    "angular-touch": "^1.4.0",
-    "angular-ui-router": "^0.3.1",
-    "lodash": "^4.17.2",
-    "angular-permission": "~0.3.1",
+    "angular": "1.5.8",
+    "json3": "~3.3.1",
+    "es5-shim": "~3.1.0",
+    "angular-resource": "1.2.16",
+    "angular-cookies": "1.2.16",
+    "angular-sanitize": "1.2.16",
+    "angular-animate": "1.2.16",
+    "angular-touch": "1.2.16",
+    "angular-route": "1.2.16",
     "font-awesome": "~4.3.0",
     "angular-bootstrap": "~0.14.3",
+    "oclazyload": "~0.5.2",
     "angular-loading-bar": "~0.7.0",
+    "angular-ui-router": "~0.2.13",
     "angular-toggle-switch": "~1.2.1",
     "angular-chart.js": "~0.5.2",
     "angular-ui-calendar": "latest",
     "bootstrap": "^3.3.7",
-    "ng-tags-input": "^3.1.1"
+    "ng-tags-input": "^3.1.1",
+    "angular-ui-select": "^0.19.6"
   },
   "devDependencies": {
-    "angular-mocks": "^1.4.0"
+    "angular-mocks": "1.2.16",
+    "angular-scenario": "1.2.16"
   },
-  "appPath": "app",
-  "moduleName": "saSeguinIsdFrontEndApp",
-  "overrides": {
-    "bootstrap": {
-      "main": [
-        "less/bootstrap.less",
-        "dist/css/bootstrap.css",
-        "dist/js/bootstrap.js"
-      ]
-    }
-  }
+  "resolutions": {
+    "bootstrap": "~3.1.1",
+    "angular": "1.5.8"
+  },
+  "appPath": "app"
 }
