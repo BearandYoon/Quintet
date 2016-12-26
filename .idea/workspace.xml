@@ -11,7 +11,6 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/conference/watched.html" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/main.html" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/app.js" afterPath="$PROJECT_DIR$/app/scripts/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/controllers/accountDetailsController.js" afterPath="$PROJECT_DIR$/app/scripts/controllers/accountDetailsController.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/controllers/accountSearchController.js" afterPath="$PROJECT_DIR$/app/scripts/controllers/accountSearchController.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/controllers/chartContoller.js" afterPath="$PROJECT_DIR$/app/scripts/controllers/chartContoller.js" />
@@ -323,7 +322,7 @@
       <option name="presentableId" value="Default" />
       <updated>1482723335273</updated>
       <workItem from="1490348224152" duration="505000" />
-      <workItem from="1482572805550" duration="341000" />
+      <workItem from="1482572805550" duration="375000" />
     </task>
     <task id="LOCAL-00001" summary="create skeleton project">
       <created>1482741184683</created>
@@ -374,11 +373,18 @@
       <option name="project" value="LOCAL" />
       <updated>1482573115798</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="update app.js">
+      <created>1482745972704</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1482745972704</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="846000" />
+    <option name="totallyTimeSpent" value="880000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="979" extended-state="6" />
@@ -445,7 +451,8 @@
     <MESSAGE value="updated project settings" />
     <MESSAGE value="added config files" />
     <MESSAGE value="added app/setting files" />
-    <option name="LAST_COMMIT_MESSAGE" value="added app/setting files" />
+    <MESSAGE value="update app.js" />
+    <option name="LAST_COMMIT_MESSAGE" value="update app.js" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
