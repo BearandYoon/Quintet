@@ -1,0 +1,43 @@
+<div class="container-fluid" ng-controller="meetingController">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Meetings</h1>
+        </div>
+    </div>
+
+    <p>
+        <i>
+            At most 250 meetings on company level are displayed.
+        </i>
+    </p>
+
+    <ul class="pagination">
+        <!-- li ng-class="{active: 'PAST'==quarter}">
+            <a href="#" ui-sref="quintet.meetings({ quarter: 'PAST' })">Past meetings</a>
+        </li -->
+        <li ng-repeat="my_quarter in quarters" ng-class="{active: my_quarter == quarter}">
+            <a href="#" ui-sref="quintet.meetings({ quarter: '{{ my_quarter}}' })">{{my_quarter}}</a>
+        </li>
+        <li ng-class="{active: 'FUTURE'==quarter}">
+            <a href="#" ui-sref="quintet.meetings({ quarter: 'FUTURE' })">Upcoming meetings</a>
+        </li>
+    </ul>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="list-group">
+                <a ui-sref="quintet.meeting_details({id: talk.ID })" class="list-group-item" ng-repeat="talk in meetings">
+                    <!-- span class="badge">{{contact_list.contacts_count}}</span -->
+                    <b>{{talk.conference}}</b><br />
+                    {{talk.start| date:'EEE, MMM d, y h:mm:ss a' }}<br />
+                    <ul class="reduced_padding">
+                        <li ng-repeat="contact in talk.contacts">
+                            {{contact.company}} ({{contact.name}})
+                        </li>
+                    </ul>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+</div>

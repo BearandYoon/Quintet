@@ -1,0 +1,33 @@
+<div class="container-fluid" ng-controller="conferenceController">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">{{headline|| "Conference Calendar"}}</h1>
+        </div>
+    </div>
+
+    <!-- Calendar -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div ui-calendar="uiConfig.calendar" ng-model="eventSources"></div>
+        </div>
+    </div>
+
+    <!-- Meetings on selected period -->
+    <div class="row" style="padding-top: 20px">
+        <div class="col-lg-12">
+            <div class="list-group">
+                <a ui-sref="quintet.meeting_details({id: talk.ID })" class="list-group-item" ng-repeat="talk in meetings">
+                    <!-- span class="badge">{{contact_list.contacts_count}}</span -->
+                    <b>{{talk.conference}}</b><br />
+                    {{talk.start| date:'EEE, MMM d, y h:mm:ss a' }}<br />
+                    <ul class="reduced_padding">
+                        <li ng-repeat="contact in talk.contacts">
+                            {{contact.company}} ({{contact.name}})
+                        </li>
+                    </ul>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+</div>

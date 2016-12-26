@@ -1,0 +1,43 @@
+<div class="container-fluid" ng-controller="peer_groupController">
+    <h1 class="page-header">Peer Group Companies</h1>
+
+    <div class="dataTable_wrapper">
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="account in accounts">
+                    <td>
+                        <img src="{{ account.image}}" />
+                    </td>
+                    <td>
+                        <b>{{ account.name}}</b><br />
+                        {{ account.desc}}
+                        <div ng-show="account.wkn">
+                            {{account.wkn}} 
+                            <span ng-class="getColor(account.stock.LastTradePriceOnly, account.stock.PreviousClose)">
+                                {{account.stock.LastTradePriceOnly}} {{account.stock.Currency}} {{account.stock.PercentChange}} 
+                            </span>
+                            ({{account.stock.PreviousClose}} {{account.stock.Currency}})
+                        </div>
+                    </td>
+                    <td>
+                        <a ui-sref="quintet.account_details({id: account.ID })">Details</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <div ng-show="symbols">
+        <h2>Stock Charts and Data</h2>
+        <div id="peer_group_stock_chart" style=""></div>
+    </div>
+
+</div>

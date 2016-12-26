@@ -1,0 +1,155 @@
+<div class="navbar-default sidebar" role="navigation">
+    <div class="sidebar-nav navbar-collapse collapse" aria-expanded="false">
+        <ul class="nav in" id="side-menu">
+            <!-- sidebar-search></sidebar-search -->
+
+            <li ui-sref-active="active">
+                <a ui-sref="quintet.contact_details({id: user_info.contact_id })" data-toggle="collapse" data-target=".navbar-collapse">
+                    <!-- <i class="fa fa-user fa-fw"></i> Profile -->
+                    <img ng-show="user_info.contact_image" src="{{user_info.contact_image}}" style="height:14px" />
+                    <i ng-hide="user_info.contact_image" class="fa fa-user fa-fw"></i>
+                    {{user_info.contact_name}}, {{user_info.contact_company}}
+                </a>
+            </li>
+
+
+            <li ui-sref-active="active">
+                <a ui-sref="quintet.home" data-toggle="collapse" data-target=".navbar-collapse"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+            </li>
+
+            <!-- li ui-sref-active="active">
+                <a ui-sref="quintet.tasks" data-toggle="collapse" data-target=".navbar-collapse"><i class="fa fa-flag fa-fw"></i> Tasks &amp; Inbox</a>
+            </li -->
+
+            <!-- li ui-sref-active="active">
+                <a ui-sref="quintet.account_search" data-toggle="collapse" data-target=".navbar-collapse"><i class="fa fa-building-o fa-fw"></i> Accounts</a>
+            </li -->
+
+            <li ng-class="{active: collapseVar == 4}">{{dropDown}}
+                <a href="" ng-click="check(4)">
+                    <i class="fa fa-building fa-fw"></i> Accounts<span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level" collapse="collapseVar!=4">
+                    <li ui-sref-active="active">
+                        <a ui-sref="quintet.account_search({mode: 'all'})" data-toggle="collapse" data-target=".navbar-collapse">All Accounts</a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="quintet.account_search({mode: 'biotech'})" data-toggle="collapse" data-target=".navbar-collapse">Biotech Companies</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+
+            <li ng-class="{active: collapseVar == 1}">{{dropDown}}
+                <a href="" ng-click="check(1)">
+                    <i class="fa fa-users fa-fw"></i> Contacts<span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level" collapse="collapseVar!=1">
+                    <li ui-sref-active="active">
+                        <a ui-sref="quintet.contact_search" data-toggle="collapse" data-target=".navbar-collapse">Contacts</a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="quintet.contact_lists" data-toggle="collapse" data-target=".navbar-collapse">Target Lists</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+
+            <li ng-class="{active: collapseVar == 2}">{{dropDown}}
+                <a href="" ng-click="check(2)">
+                    <i class="fa fa-calendar fa-fw" data-toggle="collapse" data-target=".navbar-collapse"></i> Events<span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level" collapse="collapseVar!=2">
+                    <li ui-sref-active="active">
+                        <a ui-sref="quintet.conference_calendar({mode: 'conferences'})" data-toggle="collapse" data-target=".navbar-collapse">Conferences</a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="quintet.conference_calendar({mode: 'roadshows'})" data-toggle="collapse" data-target=".navbar-collapse">Roadshows</a>
+                    </li>
+                    <!-- li ui-sref-active="active">
+                        <a ui-sref="quintet.conferences_watched" data-toggle="collapse" data-target=".navbar-collapse">Watched Conferences</a>
+                    </li -->
+                    <li ui-sref-active="active">
+                        <a ui-sref="quintet.meetings" data-toggle="collapse" data-target=".navbar-collapse">Meetings</a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="quintet.feedbacks" data-toggle="collapse" data-target=".navbar-collapse">Feedback</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+
+            <li ui-sref-active="active">
+                <a ui-sref="quintet.peer_group" data-toggle="collapse" data-target=".navbar-collapse"><i class="fa fa-bullseye fa-fw"></i> Peer Group</a>
+            </li>
+
+            <li ng-class="{active: collapseVar == 3}">{{dropDown}}
+                <a href="" ng-click="check(3)">
+                    <i class="fa fa-calendar fa-fw"></i> IR Activities<span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level" collapse="collapseVar!=3">
+                    <li ui-sref-active="active">
+                        <a ui-sref="quintet.projects" data-toggle="collapse" data-target=".navbar-collapse">Projects</a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a>Workflows (TBD)</a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a>Recommendations (TBD)</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+
+            <li class="divider"></li>
+
+            <li>
+                <a ui-sref="login" ng-click="logout()"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+            </li>
+
+
+            <!-- li>SPACER</li -->
+
+
+
+            <!-- li ui-sref-active="active">
+                <a ui-sref="dashboard.table"><i class="fa fa-table fa-fw"></i> Tables</a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="dashboard.form"><i class="fa fa-edit fa-fw"></i> Forms</a>
+            </li>
+            <li ng-class="{active: collapseVar == 100}">{{dropDown}}
+                <a href="" ng-click="check(100)">
+                    <i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level" collapse="collapseVar!=100">
+                    <li ui-sref-active="active">
+                        <a ui-sref="dashboard.panels-wells">Panels and Wells</a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="dashboard.buttons">Buttons</a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="dashboard.notifications">Notifications</a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="dashboard.typography">Typography</a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="dashboard.icons"> Icons</a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="dashboard.grid">Grid</a>
+                    </li>
+                </ul>
+            </li>
+            <li ui-sref-active="active">
+                <a href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/auth/index.html#" target="neues_fenster">Reference</a>
+            </li -->
+        </ul>
+    </div>
+    <!-- /.sidebar-collapse -->
+</div>
+
+
+

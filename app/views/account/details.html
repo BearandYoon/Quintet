@@ -1,0 +1,251 @@
+<div class="container-fluid" ng-controller="accountDetailsController">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                {{account.company}}
+            </h1>
+        </div>
+    </div>
+
+
+    <div class="row" style="padding-bottom: 20px;">
+        <div class="col-lg-12">    
+            <button ng-show="!(account.is_peer)" type="button" class="btn btn-success" ng-click="changePeer('add')">Add to Peer Group</button>
+            <button ng-show="(account.is_peer)" type="button" class="btn btn-danger" ng-click="changePeer('remove')">Remove from Peer Group</button>
+        </div>
+    </div>
+
+    <div class="row">    
+        <div class="col-md-3 col-lg-2" style="padding-bottom: 20px;">
+            <center>
+                <img class="img-thumbnail img-responsive" ng-src={{account.image_small}} />
+            </center>
+        </div>
+
+        <div class="col-md-9 col-lg-10">
+            <table class="table">
+                <tr ng-show="account.account_type">
+                    <th>Type:</th>
+                    <td>{{ account.account_type}}</td>
+                </tr>
+                <tr ng-show="account.account_status">
+                    <th>Status:</th>
+                    <td>{{ account.account_status}}</td>
+                </tr>
+                <tr ng-show="account.website">
+                    <th>Website</th>
+                    <td><a href="{{ account.website}}">{{ account.website}}</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div ng-show="account.blurb">
+        <h2>Background</h2>
+        <div style="white-space: pre-line">
+            {{ account.blurb}}
+        </div>
+    </div>
+
+    <!-- h2>Profiles</h2>
+    <div style="white-space: pre-line">
+        TODO
+    </div -->
+
+    <!-- h2>Stock Information</h2>
+    <div style="white-space: pre-line">
+        TODO
+    </div -->
+
+    <div ng-show="characteristics.length">
+        <h2>Characteristics</h2>
+        <table class="table table-striped table-condensed table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Group</th>
+                    <th>Characteristic</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="chara in characteristics">
+                    <td>{{ chara.group}}</td>
+                    <td>{{ chara.item}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div ng-show="peer_accounts.length">
+        <h2>Peer Group</h2>
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="peer_account in peer_accounts">
+                    <td>
+                        <img ng-src={{peer_account.image}} />
+                    </td>
+                    <td>
+                        <b>{{peer_account.name}}</b><br />
+                        {{peer_account.desc}}<br />
+                    </td>
+                    <td>
+                        <a ui-sref="quintet.account_details({id: {{ peer_account.ID}}})">Details</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div ng-show="account.wkn && stocktwits.length">
+        <h2>StockTwits for {{account.wkn}}</h2>
+        <table class="table table-condensed" style="width: 100%; max-width: 100%;">
+            <tr ng-repeat="twit in stocktwits">
+                <td>
+                    <img ng-src={{twit.user.avatar_url_ssl}} />
+                </td>
+                <td>
+                    <div>
+                        <b><a href="http://stocktwits.com/{{twit.user.username}}">{{twit.user.username}} / {{twit.user.name}}</a></b><br />
+                    </div>
+                    <div class="dont-break-out">
+                        {{twit.body}}
+                        <span ng-show="twit.entities.sentiment.basic == 'Bearish'" class="label label-danger">Bearish</span>
+                        <span ng-show="twit.entities.sentiment.basic == 'Bullish'" class="label label-success">Bullish</span>
+                    </div>
+                    <div ng-show="twit.entities.chart.thumb">
+                        <a href="{{twit.entities.chart.original}}">
+                            <img ng-src={{twit.entities.chart.thumb}} />
+                        </a>
+                    </div>
+                    <div>
+                        <small>{{twit.created_at| date:'MM/dd/yyyy h:mm a'}}</small>
+                    </div>
+
+                </td>
+            </tr>
+        </table>
+        <div>
+            <a class="btn btn-success" href="http://stocktwits.com/symbol/{{account.wkn}}">Open StockTwits</a>
+        </div>
+    </div>
+
+    <div ng-show="account.wkn_tv">
+        <h2>Stock Chart for {{account.wkn_tv}}</h2>
+        <div id="account_details_stock_chart" style=""></div>
+    </div>
+
+    <div ng-show="ownership.length">
+        <h2>Ownership</h2>
+
+        <div ng-repeat="ownership_item in ownership">
+            <h3>{{ownership_item.description}}</h3>
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Institution<br />Report Date</th>
+                        <th>Ratio [%]</th>
+                        <th>Holding</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in ownership_item.data">
+                        <td class="dont-break-out">
+                            <div ng-show="item.entity_name">
+                                {{ item.entity_name}}
+                            </div>
+                            <div>
+                                <a ng-repeat="foo in item.entity_accounts" ui-sref="quintet.account_details({id: foo.id })">{{foo.name}}</a>
+                            </div>
+                            <small>{{ item.report_date | date:'MM/dd/yyyy' }}</small>
+                        </td>
+                        <td style="text-align: right">{{ item.adj_ratio}}</td>
+                        <td style="text-align: right">{{ item.adj_holding}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div ng-show="ownership_loading">
+        <p><i>Information about ownership is being loaded...</i></p>
+    </div>
+
+
+    <div ng-show="holdings.length">
+        <h2>Holdings</h2>
+
+        <nav aria-label="Restrict Holdings">
+            <ul class="pagination">
+                <li ng-class="{active: holdings_filter == 'false'}"><a ng-click="loadHoldings('false')">All Companies</a></li>
+                <li ng-class="{active: holdings_filter == 'biotech'}"><a ng-click="loadHoldings('biotech')">Biotech Companies</a></li>
+            </ul>
+        </nav>
+
+        <div ng-show="holdings.length" ng-repeat="holdings_item in holdings">
+            <p>{{holdings_item.description}}</p>
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Security<br />Report Date</th>
+                        <th>Ratio [%]</th>
+                        <th>Holding</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in holdings_item.data">
+                        <td class="dont-break-out">
+                            <div ng-show="item.holding_name">
+                                {{ item.holding_name}}
+                            </div>
+                            <div>
+                                <a ng-repeat="foo in item.holding_accounts" ui-sref="quintet.account_details({id: foo.id })">{{foo.name}}</a>
+                            </div>
+                            <small>{{ item.report_date | date:'MM/dd/yyyy' }}</small>
+                        </td>
+                        <td style="text-align: right">{{ item.adj_ratio}}</td>
+                        <td style="text-align: right">{{ item.adj_holding}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div ng-show="holdings_loading">
+        <p><i>Information about holdings is being loaded...</i></p>
+    </div>
+
+    <div class="row" ng-show="contacts.length">    
+        <div class="col-lg-12">
+            <h2>Contacts</h2>
+
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Name, Company</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="contact in contacts">
+                        <td>
+                            <img ng-src={{contact.image}} />
+                        </td>
+                        <td>
+                            <div ng-show="contact.name"><b>{{ contact.name}}</b></div>
+                            <div ng-show="contact.desc">{{ contact.desc}}</div>
+                            <div ng-show="contact.company">{{ contact.company}}</div>
+                        </td>
+                        <td>
+                            <a ui-sref="quintet.contact_details({id: contact.ID })">Details</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

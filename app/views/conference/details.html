@@ -1,0 +1,47 @@
+<div class="container-fluid" ng-controller="conferenceDetailsController">
+    <h1 class="page-header">
+        <!-- {{ contact_list.ID}} -->
+        {{ conference.name}}
+    </h1>
+    <h2>Details</h2>
+
+    <table class="table">
+        <tr>
+            <th>Date:</th>
+            <td>{{ conference.first_day | date:'MM/dd/yyyy' }} &ndash; {{conference.last_day| date:'MM/dd/yyyy' }}</td>
+        </tr>
+        <tr ng-show="conference.location">
+            <th>Location:</th>
+            <td>{{ conference.location}}</td>
+        </tr>
+        <tr ng-show="conference.conference_types">
+            <th>Type:</th>
+            <td>{{ conference.conference_types}}</td>
+        </tr>
+        <tr ng-show="conference.conference_topics">
+            <th>Topic:</th>
+            <td>{{ conference.conference_topics}}</td>
+        </tr>
+        <tr ng-show="conference.website">
+            <th>Website:</th>
+            <td><a href="{{conference.website}}">{{conference.website}}</a></td>
+        </tr>
+    </table>
+
+    <div ng-repeat="conday in condays">
+        <h3 ng-show="meetings[conday.conday_id].length">Meetings on {{conday.date| date:'MM/dd/yyyy'}}</h3>
+
+        <div class="list-group">
+            <a ui-sref="quintet.meeting_details({id: talk.ID })" class="list-group-item" ng-repeat="talk in meetings[conday.conday_id]">
+                <!-- span class="badge">{{contact_list.contacts_count}}</span -->
+                <b>{{talk.conference}}</b><br />
+                {{talk.start| date:'EEE, MMM d, y h:mm:ss a' }}<br />
+                <ul class="reduced_padding">
+                    <li ng-repeat="contact in talk.contacts">
+                        {{contact.company}} ({{contact.name}})
+                    </li>
+                </ul>
+            </a>
+        </div>
+    </div>
+</div>

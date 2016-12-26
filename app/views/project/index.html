@@ -1,0 +1,20 @@
+<div class="container-fluid" ng-controller="projectController">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Projects</h1>
+        </div>
+
+        <div class="col-lg-12">
+            <div class="list-group">
+                <a ui-sref="quintet.project_details({id: project.ID })" class="list-group-item" ng-repeat="project in projects">
+                    <span class="badge">{{project.project_status}}</span>
+                    <b>{{project.title}}</b><br />
+                    {{ project.project_type}}, {{ project.due_date | date:'MM/dd/yyyy' }}<br />
+                    {{project.description}}
+                </a>
+            </div>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+</div>

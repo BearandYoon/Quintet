@@ -1,0 +1,88 @@
+<div class="container-fluid" ng-controller="projectDetailsController">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                <!-- {{ contact_list.ID}} -->
+                {{ project.title}}
+            </h1>
+        </div>
+    </div>
+
+    <div class="row">    
+        <div class="col-lg-12">
+            <h2>Details</h2>
+
+            <table class="table">
+                <tr>
+                    <th>Description:</th>
+                    <td>{{ project.description}}</td>
+                </tr>
+                <tr>
+                    <th>Type:</th>
+                    <td>{{ project.project_type}}</td>
+                </tr>
+                <tr>
+                    <th>Status:</th>
+                    <td>{{ project.project_status}}</td>
+                </tr>
+                <tr>
+                    <th>Due date:</th>
+                    <td>{{ project.due_date | date:'MM/dd/yyyy' }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">    
+        <div class="col-lg-12">
+            <h2>Accounts</h2>
+
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Account</th>
+                        <th>Contacts</th>
+                        <th>CDA</th>
+                        <th>Status</th>
+                        <th>Status Summary</th>
+                        <th>Feedback</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="pha in phas">
+                        <td>
+                            <a ui-sref="quintet.account_details({id: pha.account_id })">{{ pha.account}}</a>
+                        </td>
+                        <td>
+                            <div ng-repeat="contact in pha.contacts" style="padding-bottom: 5px">
+                                <a ui-sref="quintet.contact_details({ id: {{ contact.contact_id}} } )">{{ contact.contact_name}}</a>
+                            </div>
+                        </td>
+                        <td>{{ pha.cda}}</td>
+                        <td>{{ pha.status}}</td>
+                        <td>
+                            <div ng-show="!show_status">
+                                {{ pha.status_short}}
+                            </div>
+                            <div ng-click="show_status = !show_status" ng-show="!show_status">[more]</div>
+                            <div ng-show="show_status">
+                                {{ pha.status_long}}
+                            </div>
+                            <div ng-click="show_status = !show_status" ng-show="show_status">[less]</div>
+                        </td>
+                        <td>
+                            <div ng-show="!show_feedback">
+                                {{ pha.feedback_short}}
+                            </div>
+                            <div ng-click="show_feedback = !show_feedback" ng-show="!show_feedback">[more]</div>
+                            <div ng-show="show_feedback">
+                                {{ pha.feedback_long}}
+                            </div>
+                            <div ng-click="show_feedback = !show_feedback" ng-show="show_feedback">[less]</div>   
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

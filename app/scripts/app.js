@@ -24,11 +24,16 @@ angular
         templateUrl:  'views/main.html',
         controller: 'MainCtrl'
       })
+      .state('login', {
+        url: '/login',
+        templateUrl: 'views/auth/login.html',
+        controller: 'loginController'
+      })
       .state('about', {
         url: '/about',
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
       });
 
-    $urlRouterProvider.otherwise('/home');
+    $urlRouterProvider.otherwise('/login');
   });

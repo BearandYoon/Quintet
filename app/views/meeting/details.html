@@ -1,0 +1,64 @@
+<div class="container-fluid" ng-controller="meetingDetailsController">
+    <h1 class="page-header">
+        <!-- {{ contact_list.ID}} -->
+        {{ meeting.conference}}:<br />
+        {{ meeting.start | date:'MM/dd/yyyy h:mm a' }}
+    </h1>
+
+    <h2>Details</h2>
+
+    <table class="table">
+        <tr>
+            <th>Event:</th>
+            <td><a ui-sref="quintet.conference_details({id: meeting.conference_id })">{{ meeting.conference}}</a></td>
+        </tr>
+        <tr>
+            <th>Time:</th>
+            <td>
+                {{ meeting.start | date:'MM/dd/yyyy h:mm a' }} &ndash;
+                {{ meeting.end | date:'h:mm a' }}
+            </td>
+        </tr>
+        <tr ng-show="meeting.room">
+            <th>Room:</th>
+            <td>{{ meeting.room}}</td>
+        </tr>
+        <tr ng-show="meeting.meeting_type">
+            <th>Meeting type:</th>
+            <td>{{ meeting.meeting_type}}</td>
+        </tr>
+        <tr ng-show="meeting.meeting_point_address">
+            <th>Meeting point:</th>
+            <td style="white-space: pre-wrap">{{ meeting.meeting_point_address}}</td>
+        </tr>
+    </table>
+
+    <div ng-show="meeting.attendees.length">    
+        <h2>Participants</h2>
+
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Name, Company, Role</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="contact in meeting.attendees">
+                    <td>
+                        <img ng-show="contact.image_url" src="{{ contact.image_url}}" />
+                    </td>
+                    <td>
+                        <b>{{ contact.name}}</b><br />
+                        {{ contact.company}}<br />
+                        {{getRoleName(contact.role)}}
+                    </td>
+                    <td>
+                        <a ui-sref="quintet.contact_details({id: contact.contact_id })">Details</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

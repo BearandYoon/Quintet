@@ -1,0 +1,25 @@
+<div class="container-fluid" ng-controller="contactListEditController">
+    <h1 ng-show="id" class="page-header">
+        Edit Target List <i>{{contact_list.title}}</i>
+    </h1>
+    <h1 ng-hide="id" class="page-header">
+        Add Target List
+    </h1>
+
+    <form role="form">
+        <div class="form-group">
+            <label>Title:</label>
+            <input class="form-control" required="required" ng-model="contact_list.title">
+            <!-- p class="help-block">Example block-level help text here.</p -->
+        </div>
+        <div class="form-group">
+            <label>Description:</label>
+            <textarea class="form-control" rows="3" ng-model="contact_list.description"></textarea>
+            <!-- p class="help-block">Example block-level help text here.</p -->
+        </div>
+
+        <button ng-click="submitContactList()" class="btn btn-success">Save Changes</button>
+        <button ng-show="contact_list.ID" class="btn btn-default" ui-sref="quintet.contact_list_details({id: contact_list.ID })">Cancel</button>
+    </form>
+
+</div>

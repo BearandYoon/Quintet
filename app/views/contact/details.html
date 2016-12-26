@@ -1,0 +1,133 @@
+<div class="container-fluid" ng-controller="contactDetailsController">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                {{ contact.name}}, {{contact.company}}
+            </h1>
+        </div>
+    </div>
+
+    <div class="row">    
+        <div class="col-md-3 col-lg-2">
+            <center>
+                <img src="{{ contact.image_small}}" class="img-thumbnail img-responsive"/>
+            </center>
+        </div>
+
+        <div class="col-md-9 col-lg-10">
+            <table class="table">
+                <tr ng-show="contact.name">
+                    <th>Name:</th>
+                    <td>{{ contact.name}}</td>
+                </tr>
+                <tr ng-show="contact.nickname">
+                    <th>Nickname:</th>
+                    <td>{{ contact.nickname}}</td>
+                </tr>
+                <tr ng-show="contact.company">
+                    <th>Company:</th>
+                    <td>{{ contact.company}}</td>
+                </tr>
+                <tr ng-show="contact.job_title">
+                    <th>Job title:</th>
+                    <td>{{ contact.job_title}}</td>
+                </tr>
+                <tr ng-show="contact.contact_type">
+                    <th>Contact type:</th>
+                    <td>{{ contact.contact_type}}</td>
+                </tr>
+                <tr ng-show="contact.address">
+                    <th>Address:</th>
+                    <td style="white-space: pre-line"><a ng-href="https://maps.google.com/?q={{contact.address|encodeAddressForGmaps}}" target="blank">{{ contact.address}}</a></td>
+                </tr>
+                <tr ng-show="contact.phone">
+                    <th>Phone:</th>
+                    <td><a href="tel://{{ contact.phone}}">{{ contact.phone}}</a></td>
+                </tr>
+                <tr ng-show="contact.fax">
+                    <th>Fax:</th>
+                    <td>{{ contact.fax}}</td>
+                </tr>
+                <tr ng-show="contact.email">
+                    <th>E-Mail:</th>
+                    <td><a href="mailto:{{ contact.email}}">{{ contact.email}}</a></td>
+                </tr>
+                <tr ng-show="contact.website">
+                    <th>Website:</th>
+                    <td><a href="{{contact.website}}">{{contact.website}}</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div ng-show="contact.notes_public">
+        <h2>Background</h2>
+        <div style="white-space: pre-line">
+            {{ contact.notes_public}}
+        </div>
+    </div>
+
+    <div ng-show="contact.account_ID">
+        <h2>Account: {{contact.account.company}}</h2>
+
+        <div class="row"> 
+            <div class="col-md-3 col-lg-2">
+                <center>
+                    <img src="{{ contact.account.image_small}}" class="img-thumbnail img-responsive"/>
+                </center>
+            </div>
+
+            <div class="col-md-9 col-lg-10">
+                <div style="white-space: pre-line">{{ contact.account.blurb}}</div>
+
+                <button type="button" class="btn btn-success" ui-sref="quintet.account_details({id: contact.account_ID })">Account Profile</button>
+            </div>
+        </div>
+    </div>
+
+    <div ng-show="contact_lists.length">
+        <h2>Target Lists</h2>
+
+        <div class="list-group">
+            <div class="list-group-item" ng-repeat="contact_list in contact_lists">
+                <span class="badge">{{contact_list.contacts_count}}</span>
+                <b>{{contact_list.title}}</b>
+                <div ng-show="contact_list.description">
+                    {{contact_list.description}}
+                </div>
+
+                <div>
+                    <button ng-show="(contact_list.status == 'NOT_ON_LIST')" type="button" class="btn btn-success" ng-click="changeSubscription('add', contact_list.ID)">Add to List</button>
+
+                    <button ng-show="(contact_list.status == 'SUBSCRIBED')" type="button" class="btn btn-danger" ng-click="changeSubscription('remove', contact_list.ID)">Remove</button>
+
+                    <a ui-sref="quintet.contact_list_details({id: contact_list.ID })" class="btn btn-default">Go to List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-show="meetings.length">
+        <h2>Meeting History</h2>
+
+        <div class="list-group">
+            <a ui-sref="quintet.meeting_details({id: talk.ID })" class="list-group-item" ng-repeat="talk in meetings">
+                <!-- span class="badge">{{contact_list.contacts_count}}</span -->
+                <b>{{talk.conference}}</b><br />
+                {{talk.start| date:'EEE, MMM d, y h:mm:ss a' }}<br />
+                <ul class="reduced_padding">
+                    <li ng-repeat="contact in talk.contacts">
+                        {{contact.company}} ({{contact.name}})
+                    </li>
+                </ul>
+            </a>
+        </div>
+    </div>
+
+    <!-- h2>Profiles</h2>
+    <div style="white-space: pre-line">
+        TODO
+    </div -->
+
+
+</div>

@@ -1,0 +1,34 @@
+<div class="container-fluid" ng-controller="feedbackController">
+    <h1 class="page-header">Feedbacks</h1>
+
+    <!-- p>
+        <i>
+            At most 250 meetings on company level are displayed.
+        </i>
+    </p -->
+
+    <ul class="pagination">
+        <!-- li ng-class="{active: 'PAST'==quarter}">
+            <a href="#" ui-sref="quintet.meetings({ quarter: 'PAST' })">Past meetings</a>
+        </li -->
+        <li ng-repeat="my_quarter in quarters" ng-class="{
+                    active: my_quarter == quarter
+                }">
+            <a href="#" ui-sref="quintet.feedbacks({ quarter: '{{ my_quarter}}' })">{{my_quarter}}</a>
+        </li>
+    </ul>
+
+    <p ng-hide="feedbacks.length">
+        <i>No feedback was found.</i>
+    </p>
+
+    <div ng-show="feedbacks.length" class="list-group">
+        <a class="list-group-item" ng-repeat="feedback in feedbacks">
+            <!-- span class="badge">{{contact_list.contacts_count}}</span -->
+            <b>{{feedback.conference}}</b> &ndash; <span ng-class="getColor(feedback.tendency)"><b>{{feedback.tendency_string}}</b></span><br />
+            <p>
+                {{feedback.comment}}
+            </p>
+        </a>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+<div class="container-fluid" ng-controller="contact_listController">
+    <h1 class="page-header">Target Lists</h1>
+
+    <div style="padding-bottom: 20px;">
+        <button type="button" class="btn btn-success" ui-sref="quintet.contact_list_edit({id: null})">Create Target List</button>
+    </div>
+
+    <div class="list-group" ng-show="contact_lists.length">
+        <a ui-sref="quintet.contact_list_details({id: contact_list.ID })" class="list-group-item" ng-repeat="contact_list in contact_lists">
+            <span class="badge">{{contact_list.contacts_count}}</span>
+            <b>{{contact_list.title}}</b><br />
+            <div>{{contact_list.description}}</div>
+        </a>
+    </div>
+
+    <div class="list-group" ng-hide="contact_lists.length">
+        <p>
+            <i>No target lists available.</i>
+        </p>
+    </div>
+</div>

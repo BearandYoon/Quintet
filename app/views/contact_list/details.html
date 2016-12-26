@@ -1,0 +1,68 @@
+<div class="container-fluid" ng-controller="contactListDetailsController">
+    <h1 class="page-header">
+        <!-- {{ contact_list.ID}} -->
+        {{ contact_list.title}}
+    </h1>
+
+
+    <div style="padding-bottom: 20px;" ng-show="contact_list.ID">
+        <button type="button" class="btn btn-success" ui-sref="quintet.contact_list_edit({id: contact_list.ID })">Edit Target List</button>
+    </div>
+
+    <canvas ng-if="pie.data[0] + pie.data[1]" id="pie" class="chart chart-pie chart-xs" data="pie.data" labels="pie.labels" style="max-height: 200px;"></canvas>
+
+    
+    <h2>Details</h2>
+
+    <table class="table">
+        <tr ng-show="contact_list.description">
+            <th>Description:</th>
+            <td style="white-space: pre-line">{{ contact_list.description}}</td>
+        </tr>
+        <tr ng-show="stat.met + stat.not_met">
+            <th>Met contacts:</th>
+            <td>{{stat.met}} of {{(stat.met + stat.not_met)}}</td>
+        </tr>
+    </table>
+
+    
+    <h2>Contacts</h2>
+
+    <p ng-hide="contacts.length">
+        <i>There are no contacts on this list.</i>
+    </p>
+
+    <table ng-show="contacts.length" class="table table-striped table-bordered table-hover" id="contacts_on_contactlist">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Name, Company, Last Meeting</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="contact in contacts" data-contact-id="{{contact.ID}}">
+                <td>
+                    <img ng-show="contact.image" src="{{contact.image}}" />
+                </td>
+                <td>
+                    <div ng-show="contact.name"><b>{{contact.name}}</b></div>
+                    <div ng-show="contact.desc">{{contact.desc}}</div>
+                    <div ng-show="contact.company">{{contact.company}}</div>
+                    <div ng-show="contact.talk_timestamp" class="greenNumbers">Last meeting: {{contact.talk_timestamp| date:'EEE, MMM d, y h:mm:ss a' }}</div>
+                </td>
+                <td>
+                    <div>
+                        <a ui-sref="quintet.contact_details({id: contact.ID })">Contact</a>
+                    </div>
+                    <div ng-show="contact.talk_id">
+                        <a ui-sref="quintet.meeting_details({id: contact.talk_id })">Last Meeting</a>
+                    </div>
+                    <div>
+                        <a ng-click="changeSubscription('remove', contact.ID)">Remove From List</a>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

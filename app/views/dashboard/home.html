@@ -1,0 +1,182 @@
+<div ng-controller="mainController">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Dashboard</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <!-- stats number="{{ stats.contact_updates}}" comments="Contact Updates" colour="primary" type="fa-refresh" goto="quintet.contact_search"></stats -->
+        <stats number="{{ stats.upcoming_meetings}}" comments="Upcoming Meetings" colour="one" type="fa-users" goto="quintet.meetings({ quarter: 'FUTURE' })"></stats>
+        <stats number="{{ stats.upcoming_roadshows}}" comments="Upcoming Conferences" colour="two" type="fa-tasks" goto="quintet.conference_list({mode: 'roadshows'})"></stats>
+        <stats number="{{ stats.target_lists}}" comments="Target Lists" colour="six" type="fa-list" goto="quintet.contact_lists"></stats>
+        <stats number="{{ stats.peer_group_companies}}" comments="Peer Group Companies" colour="four" type="fa-bullseye" goto="quintet.peer_group"></stats>
+        <stats number="{{ stats.projects}}" comments="IR Activities" colour="five" type="fa-filter" goto="quintet.projects"></stats>
+    </div>
+
+    <div class="row">
+        <div class="row market-chart-group">
+            <div class="col-lg-6 col-sm-12" ng-show="account.wkn || peer_group.length">
+                <div class="panel panel-default">
+                    <div ng-show="account.wkn && peer_group.length" class="panel-heading">Stock Chart for {{account.wkn_tv}} and its Peer Group</div>
+                    <div ng-show="account.wkn && !peer_group.length" class="panel-heading">Stock Chart for {{account.wkn_tv}}</div>
+                    <div ng-show="!account.wkn && peer_group.length" class="panel-heading">Stock Chart for the Peer Group</div>
+                    <div class="panel-body" style="padding: 0">
+                        <div id="tv-miniwidget-2"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-sm-12">
+                <div class="panel panel-default" >
+                    <div class="panel-heading">Meetings and Feedbacks (Company Level)</div>
+                    <div class="panel-body" style="height: 337px;">
+                        <canvas id="line" class="chart chart-line chart-xl" data="line.data" labels="line.labels" legend="true"
+                                click="line.onClick" series="line.series"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-sm-12 col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Links for Trout Management Access 2017 in SF
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-building-o fa-fw"></i> Company 1
+                            <span class="pull-right text-muted small"><em>Company 1</em></span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-building-o fa-fw"></i> Company 2
+                            <span class="pull-right text-muted small"><em>Company 2</em></span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-building-o fa-fw"></i> Company 3
+                            <span class="pull-right text-muted small"><em>Company 3</em></span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-building-o fa-fw"></i> Company 4
+                            <span class="pull-right text-muted small"><em>Company 4</em></span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-building-o fa-fw"></i> Company 5
+                            <span class="pull-right text-muted small"><em>Company 5</em></span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-building-o fa-fw"></i> Company 6
+                            <span class="pull-right text-muted small"><em>Company 6</em></span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-building-o fa-fw"></i> Company 7
+                            <span class="pull-right text-muted small"><em>Company 7</em></span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-building-o fa-fw"></i> Company 8
+                            <span class="pull-right text-muted small"><em>Company 8</em></span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-building-o fa-fw"></i> Company 9
+                            <span class="pull-right text-muted small"><em>Company 9</em></span>
+                        </a>
+                    </div>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-sm-12" ng-repeat="ownership_item in ownership">
+            <div class="panel panel-default">
+                <div class="panel-heading">{{ownership_item.description}}</div>
+                <div class="panel-body" style="padding: 0">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Institution<br />Report Date</th>
+                                <th>Ratio [%]</th>
+                                <th>Holding</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in ownership_item.data">
+                                <td class="dont-break-out">
+                                    <div ng-show="item.entity_name">
+                                        {{ item.entity_name}}
+                                    </div>
+                                    <div>
+                                        <a ng-repeat="foo in item.entity_accounts" ui-sref="quintet.account_details({id: foo.id })">{{foo.name}}</a>
+                                    </div>
+                                    <small>{{ item.report_date | date:'MM/dd/yyyy' }}</small>
+                                </td>
+                                <td style="text-align: right">{{ item.adj_ratio}}</td>
+                                <td style="text-align: right">{{ item.adj_holding}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-sm-12" id="line-chart" ng-show="account.wkn && stocktwits.length">
+            <div class="panel panel-default">
+                <div class="panel-heading">StockTwits for {{account.wkn}}</div>
+                <div class="panel-body" style="padding: 0">
+                    <table class="table table-condensed" style="width: 100%; max-width: 100%;">
+                        <tr ng-repeat="twit in stocktwits">
+                            <td>
+                                <img ng-src={{twit.user.avatar_url_ssl}}/>
+                            </td>
+                            <td>
+                                <div>
+                                    <b><a href="http://stocktwits.com/{{twit.user.username}}">{{twit.user.username}} / {{twit.user.name}}</a></b><br />
+                                </div>
+                                <div class="dont-break-out">
+                                    {{twit.body}}
+                                    <span ng-show="twit.entities.sentiment.basic == 'Bearish'" class="label label-danger">Bearish</span>
+                                    <span ng-show="twit.entities.sentiment.basic == 'Bullish'" class="label label-success">Bullish</span>
+                                </div>
+                                <div ng-show="twit.entities.chart.thumb">
+                                    <a href="{{twit.entities.chart.original}}">
+                                        <img ng-src={{twit.entities.chart.thumb}}/>
+                                    </a>
+                                </div>
+                                <div>
+                                    <small>{{twit.created_at| date:'MM/dd/yyyy h:mm a'}}</small>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <div style="padding: 15px;">
+                        <a class="btn btn-success" href="http://stocktwits.com/symbol/{{account.wkn}}">Open StockTwits</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Email To Contact</div>
+                <div class="panel-body">
+                    <form name="EmailContactForm" class="form-horizontal" ng-submit="EmailContactForm.$valid && sendEmail()">
+                        <div class="email-control">
+                            <tags-input ng-model="emails.recipients" placeholder="Add a Email"
+                                        allowed-tags-pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" display-property="email" ng-required="true">
+                            </tags-input>
+                        </div>
+                        <div class="email-control">
+                            <input class="form-control" ng-model="emails.subject" placeholder="Subject">
+                        </div>
+                        <div class="email-control">
+                            <textarea class="form-control" ng-model="emails.body" rows="10" placeholder="This is an Email body." ng-required="true"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success email-button">Send an Email</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
