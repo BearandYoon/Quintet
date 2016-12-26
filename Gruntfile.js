@@ -1,4 +1,4 @@
-// Generated on 2016-12-26 using generator-angular 0.15.1
+// Generated on 2016-08-25 using generator-angular 0.15.1
 'use strict';
 
 // # Globbing
@@ -224,7 +224,7 @@ module.exports = function (grunt) {
         src: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
         ignorePath: /(\.\.\/){1,2}bower_components\//
       }
-    }, 
+    },
 
     // Compiles Sass to CSS and generates necessary files if requested
     compass: {
@@ -371,7 +371,7 @@ module.exports = function (grunt) {
     ngtemplates: {
       dist: {
         options: {
-          module: 'quintetApp',
+          module: 'saSeguinIsdFrontEndApp',
           htmlmin: '<%= htmlmin.dist.options %>',
           usemin: 'scripts/scripts.js'
         },

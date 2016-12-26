@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name quintetApp.controller:AboutCtrl
+ * @name Quintet.controller:AboutCtrl
  * @description
  * # AboutCtrl
- * Controller of the quintetApp
+ * Controller of the Quintet
  */
-angular.module('quintetApp')
+angular.module('Quintet')
   .controller('AboutCtrl', function () {
     this.awesomeThings = [
       'HTML5 Boilerplate',

@@ -2,34 +2,33 @@
 
 /**
  * @ngdoc overview
- * @name quintetApp
+ * @name Quintet
  * @description
- * # quintetApp
+ * # Quintet
  *
  * Main module of the application.
  */
 angular
-  .module('quintetApp', [
+  .module('Quintet', [
     'ngAnimate',
     'ngCookies',
     'ngResource',
-    'ngRoute',
+    'ui.router',
     'ngSanitize',
     'ngTouch'
   ])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
+  .config(function ($stateProvider, $urlRouterProvider) {
+    $stateProvider
+      .state('home', {
+        url: '/home',
+        templateUrl:  'views/main.html',
+        controller: 'MainCtrl'
       })
-      .when('/about', {
+      .state('about', {
+        url: '/about',
         templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
-      })
-      .otherwise({
-        redirectTo: '/'
+        controller: 'AboutCtrl'
       });
+
+    $urlRouterProvider.otherwise('/home');
   });
