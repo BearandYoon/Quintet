@@ -2,17 +2,26 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Trout Quintet</title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
+    <link rel="stylesheet" href="bower_components/angular-toggle-switch/angular-toggle-switch.css" />
+    <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css" />
+    <link rel="stylesheet" href="bower_components/fullcalendar/dist/fullcalendar.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/ng-tags-input/ng-tags-input.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/sb-admin-2.css">
+    <link rel="stylesheet" href="styles/timeline.css">
+    <link rel="stylesheet" href="styles/carlito_kit/carlito.css">
     <!-- endbuild -->
   </head>
   <body ng-app="Quintet">
@@ -21,10 +30,7 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-
-    <div class="container">
-      <div ui-view=""></div>
-    </div>
+    <div ui-view></div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -50,6 +56,17 @@
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/lodash/lodash.js"></script>
+    <script src="bower_components/angular-permission/dist/angular-permission.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
+    <script src="bower_components/angular-toggle-switch/angular-toggle-switch.js"></script>
+    <script src="bower_components/Chart.js/Chart.js"></script>
+    <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/fullcalendar/dist/fullcalendar.js"></script>
+    <script src="bower_components/angular-ui-calendar/src/calendar.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/ng-tags-input/ng-tags-input.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -78,11 +95,11 @@
     <script src="scripts/controllers/projectController.js"></script>
     <script src="scripts/controllers/projectDetailsController.js"></script>
 
-
+    <script src="scripts/services/mainService.js"></script>
     <script src="scripts/services/accountService.js"></script>
     <script src="scripts/services/conferenceService.js"></script>
     <script src="scripts/services/contactService.js"></script>
-    <script src="scripts/services/mainService.js"></script>
+    <script src="scripts/services/authService.js"></script>
 
     <script src="scripts/directives/chat/chat.js"></script>
     <script src="scripts/directives/dashboard/stats/stats.js"></script>
@@ -95,6 +112,8 @@
 
     <script src="js/sb-admin-2.js"></script>
     <script src="js/storageWrapper.js"></script>
+    <script src="https://stocktwits.com/addon/widget/2/widget-loader.min.js" type="text/javascript"></script>
+    <script src="https://d33t3vvu2t2yu5.cloudfront.net/tv.js" type="text/javascript"></script>
     <!-- endbuild -->
 </body>
 </html>

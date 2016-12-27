@@ -128,7 +128,7 @@
                     <table class="table table-condensed" style="width: 100%; max-width: 100%;">
                         <tr ng-repeat="twit in stocktwits">
                             <td>
-                                <img ng-src={{twit.user.avatar_url_ssl}}/>
+                                <img ng-src={{twit.user.avatar_url_ssl}}>
                             </td>
                             <td>
                                 <div>
@@ -141,7 +141,7 @@
                                 </div>
                                 <div ng-show="twit.entities.chart.thumb">
                                     <a href="{{twit.entities.chart.original}}">
-                                        <img ng-src={{twit.entities.chart.thumb}}/>
+                                        <img ng-src={{twit.entities.chart.thumb}}>
                                     </a>
                                 </div>
                                 <div>

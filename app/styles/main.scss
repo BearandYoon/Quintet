@@ -1,17 +1,6 @@
-$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
-// bower:scss
-@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
-// endbower
-
-.browsehappy {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0;
-}
-
+/* Space out content a bit */
 body {
-  padding: 0;
+  padding-bottom: 20px;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -25,15 +14,13 @@ body {
 /* Custom page header */
 .header {
   border-bottom: 1px solid #e5e5e5;
-  margin-bottom: 10px;
-
-  /* Make the masthead heading the same height as the navigation */
-  h3 {
-    margin-top: 0;
-    margin-bottom: 0;
-    line-height: 40px;
-    padding-bottom: 19px;
-  }
+}
+/* Make the masthead heading the same height as the navigation */
+.header h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 40px;
+  padding-bottom: 19px;
 }
 
 /* Custom page footer */
@@ -43,6 +30,12 @@ body {
   border-top: 1px solid #e5e5e5;
 }
 
+/* Customize container */
+@media (min-width: 768px) {
+  .container {
+    max-width: 730px;
+  }
+}
 .container-narrow > hr {
   margin: 30px 0;
 }
@@ -51,28 +44,22 @@ body {
 .jumbotron {
   text-align: center;
   border-bottom: 1px solid #e5e5e5;
-
-  .btn {
-    font-size: 21px;
-    padding: 14px 24px;
-  }
+}
+.jumbotron .btn {
+  font-size: 21px;
+  padding: 14px 24px;
 }
 
 /* Supporting marketing content */
 .marketing {
   margin: 40px 0;
-
-  p + h4 {
-    margin-top: 28px;
-  }
+}
+.marketing p + h4 {
+  margin-top: 28px;
 }
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
-  .container {
-    max-width: 730px;
-  }
-
   /* Remove the padding we set earlier */
   .header,
   .marketing,
@@ -88,4 +75,207 @@ body {
   .jumbotron {
     border-bottom: 0;
   }
+}
+
+.nav>li.active>a {
+  text-decoration: none;
+  background-color: #eee;
+}
+
+/* #stocktwits-widget-news iframe {
+    width: 100% !important;
+    border: 2px solid red !important;
+} */
+
+/** Logo in NavBar */
+/* .navbar-brand {
+    padding: 0px;
+}
+.navbar-brand>img {
+    height: 100%;
+    padding: 15px;
+    width: auto;
+}
+.navbar-brand>img {
+    padding: 7px 14px;
+} */
+
+.redNumbers {
+  color: red;
+  font-weight: bold;
+}
+
+.greenNumbers {
+  color: green;
+  font-weight: bold;
+}
+
+/** Verhindert, das Zellen zu lang werden */
+.dont-break-out {
+
+  /* These are technically the same, but use both */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  -ms-word-break: break-all;
+  /* This is the dangerous one in WebKit, as it breaks things wherever */
+  word-break: break-all;
+  /* Instead use this non-standard one: */
+  word-break: break-word;
+
+  /* Adds a hyphen where the word breaks, if supported (No Blink) */
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+
+}
+
+ul.reduced_padding {
+  /* border: 2px solid blue; */
+  padding-left: 25px;
+}
+
+ul.reduced_padding li {
+  /* border: 2px solid red; */
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+  color: white !important;
+  background-color: white !important;
+}
+
+/** Schriftgrößen für Überschriften */
+
+/* .h1, h1 {
+    font-size: 26px !important;
+} */
+
+.h2, h2 {
+  font-size: 22px !important;
+}
+
+.h3, h3 {
+  font-size: 18px !important;
+}
+
+.h4, h4 {
+  font-size: 15px !important;
+  font-weight: bold;
+}
+
+/** Change default font */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-family: Calibri, Carlito, sans-serif;
+}
+
+/** Change default font size */
+body {
+  font-size: 15px;
+}
+
+/** New font and size for H1 headlines */
+@font-face {
+  font-family: 'Bebas Neue';
+  src:
+  local('Bebas Neue'),
+  local('Bebas Neue Regular'),
+  local('BebasNeueRegular'),
+  local('BebasNeue'),
+  url('bebas_neue_kit/bebasneuewebfont-webfont.woff2') format('woff2'),
+  url('bebas_neue_kit/bebasneuewebfont-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.h1, h1 {
+  font-family: 'Bebas Neue', Calibri, Carlito, sans-serif;
+  font-size: 40px !important;
+}
+
+/** Lower space above first headline */
+.page-header {
+  margin-top: 10px;
+}
+
+/** Formatting of the logo top-left */
+.navbar-brand {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 8px;
+}
+
+/** Formatting of a number on the dashboard --> Should be different on mobile phones */
+.dashboard-number {
+  /* Mobile/Tablet styles (xs, sm) */
+  /* border: 1px solid red; */
+}
+@media (max-width: 480px) {
+  .dashboard-number {
+    /* Tablet/Desktop styles (md, lg) */
+    /* border: 1px solid blue; */
+  }
+
+  .dashboard-number .huge {
+    line-height: 1.0;
+  }
+
+  .dashboard-number .fa-5x {
+    font-size: 4em !important;
+  }
+
+  .dashboard-number .panel-heading {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+}
+
+/** Show a table row as marked */
+.table-marked {
+  background-color: #DDFFDD !important;
+}
+
+/** Stock chart on Home Dashboard page */
+#dashboard_stock_chart, #account_details_stock_chart, #peer_group_stock_chart {
+  width: 100%;
+  height: 500px;
+}
+/* @media screen and (max-width: 768px) {
+    #dashboard_stock_chart {
+        border: 2px dotted red;
+    }
+} */
+
+/** Larger panel headings */
+.panel-heading {
+  font-size: 18px;
+}
+
+.market-chart-group {
+  padding: 15px;
+}
+
+.chart-xl {
+  height: 269px !important;
+}
+
+.email-control {
+  margin-bottom: 15px;
+}
+
+.email-button {
+  margin-bottom: 15px;
+  float: right;
 }

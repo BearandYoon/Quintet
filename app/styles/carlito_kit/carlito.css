@@ -1,0 +1,27 @@
+@font-face {
+    font-family: 'Carlito';
+	src: local(Carlito), url('Carlito-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Carlito';
+	src: local(Carlito), url('Carlito-BoldItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Carlito';
+	src: local(Carlito), url('Carlito-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Carlito';
+	src: local(Carlito), url('Carlito-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
