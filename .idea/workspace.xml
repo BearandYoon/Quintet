@@ -315,7 +315,7 @@
       <option name="presentableId" value="Default" />
       <updated>1482723335273</updated>
       <workItem from="1490348224152" duration="505000" />
-      <workItem from="1482572805550" duration="717000" />
+      <workItem from="1482572805550" duration="736000" />
     </task>
     <task id="LOCAL-00001" summary="create skeleton project">
       <created>1482741184683</created>
@@ -415,11 +415,18 @@
       <option name="project" value="LOCAL" />
       <updated>1482919116250</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="updated contact_listController">
+      <created>1482919136758</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1482919136758</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1222000" />
+    <option name="totallyTimeSpent" value="1241000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="979" extended-state="6" />
@@ -493,7 +500,8 @@
     <MESSAGE value="updated chartController" />
     <MESSAGE value="updated conferenceController" />
     <MESSAGE value="updated conferenceDetailsController" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated conferenceDetailsController" />
+    <MESSAGE value="updated contact_listController" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated contact_listController" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
