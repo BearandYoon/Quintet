@@ -1,13 +1,13 @@
 'use strict';
 /**
  * @ngdoc function
- * @name Quintet.controller:conferenceDetailsController
+ * @name sbAdminApp.controller:conferenceDetailsController
  * @description
  * # MainCtrl
- * Controller of the Quintet
+ * Controller of the sbAdminApp
  */
-angular.module('Quintet')
-    .controller('conferenceDetailsController', function (mainService, $scope, $state, $http, $stateParams) {
+angular.module('sbAdminApp')
+    .controller('conferenceDetailsController', function (cfgService, $scope, $state, $http, $stateParams, ConferenceService) {
         console.log("$stateParams : ", $stateParams);
         $scope.id = $stateParams.id;
 
@@ -18,53 +18,56 @@ angular.module('Quintet')
         $scope.loadMeetings = function () {
             console.log("loadMeetings called");
             $scope.condays.forEach(function (conday) {
-                console.log("loadMeetings called for conday=" + conday.conday_id);
+                console.log("loadMeetings called for conday = ", conday.conday_id);
                 var promise = $http({
                     method: "GET",
                     cache: false,
-                    url: mainService.getControllerUrl() + "/meeting",
+                    url: cfgService.getControllerUrl() + "/meeting",
                     params: {
-                        token: mainService.getToken(),
-                        conday_id: conday.conday_id,
+                        token: cfgService.getToken(),
+                        conday_id: conday.conday_id
                     }
                 }).then(function (resp) {
-                    console.log("RESPONSE: " + resp);
-                    console.log(resp.data);
+                    console.log("RESPONSE: ", resp);
+                    //console.log(resp.data);
                     $scope.meetings[conday.conday_id] = resp.data;
                 }, function (resp) {
-                    mainService.httpErrorCallback(resp);
+                    cfgService.httpErrorCallback(resp);
                 });
             });
         };
 
-        console.log("conferenceDetailsController is running now...");
+        cfgService.showSpinner("Loading conference data...");
 
-        mainService.showSpinner("Loading conference data...");
+        $scope.getConferenceData = function() {
+            ConferenceService.getConferenceData($stateParams.id, function(response) {
+                if(response) {
+                    console.log('conferenceDetailsController-getConferenceData-response = ', response);
+                    $scope.conference = response.conference;
+                    $scope.condays = response.condays;
+                    $scope.loadMeetings();
+                }
+                cfgService.hideSpinner();
+            })
+        };
 
-        $http({
-            method: "GET",
-            cache: false,
-            url: mainService.getControllerUrl() + "/conference/index",
-            params: {
-                id: $stateParams.id,
-                token: mainService.getToken()
+        $scope.favoriteConf = function() {
+            $scope.conference.is_favorite = !$scope.conference.is_favorite;
+
+            if($scope.conference.is_favorite) {
+                ConferenceService.setConferenceFavorite($stateParams.id, function(response) {
+                    if(!response) {
+                        $scope.conference.is_favorite = !$scope.conference.is_favorite;
+                    }
+                })
+            } else {
+                ConferenceService.removeConferenceFavorite($stateParams.id, function(response) {
+                    if(!response) {
+                        $scope.conference.is_favorite = !$scope.conference.is_favorite;
+                    }
+                })
             }
-        }).then(function (resp) {
-            console.log("RESPONSE:");
-            console.log(resp.data);
-            // $scope.contact_list = resp.data.ContactList;
-            $scope.conference = resp.data.conference;
-            $scope.condays = resp.data.condays;
+        };
 
-            $scope.loadMeetings();
-
-            console.log("Data loaded!");
-            console.log($scope.conference);
-        }, function (resp) {
-            mainService.httpErrorCallback(resp);
-        }).finally(function() {
-            mainService.hideSpinner();
-        }) ;
-
-        console.log("conferenceDetailsController is running now... Done.");
+        $scope.getConferenceData();
     });
