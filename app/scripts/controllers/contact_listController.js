@@ -1,34 +1,34 @@
 'use strict';
 /**
  * @ngdoc function
- * @name Quintet.controller:contact_listController
+ * @name sbAdminApp.controller:contact_listController
  * @description
  * # MainCtrl
- * Controller of the Quintet
+ * Controller of the sbAdminApp
  */
-angular.module('Quintet')
-        .controller('contact_listController', function ($scope, $state, $http, mainService) {
-            $scope.contact_lists = [];
+angular.module('sbAdminApp')
+    .controller('contact_listController', function ($scope, $state, $http, cfgService) {
+        $scope.contact_lists = [];
 
-            console.log("contact_listController is running now...");
+        console.log("contact_listController is running now...");
 
-            mainService.showSpinner("Loading lists...");
+        cfgService.showSpinner("Loading lists...");
 
-            var promise = $http({
-                method: "GET",
-                cache: false,
-                url: mainService.getControllerUrl() + "/contact_list",
-                params: {
-                    token: mainService.getToken()
-                }
-            }).then(function (resp) {
-                console.log("RESPONSE: " + resp);
-                $scope.contact_lists = resp.data;
-            }, function (resp) {
-                mainService.httpErrorCallback(resp);
-            }).finally(function() {
-                mainService.hideSpinner();
-            });
-
-            console.log("contact_listController is running now... Done.");
+        var promise = $http({
+            method: "GET",
+            cache: false,
+            url: cfgService.getControllerUrl() + "/contact_list",
+            params: {
+                token: cfgService.getToken()
+            }
+        }).then(function (resp) {
+            console.log("RESPONSE: " + resp);
+            $scope.contact_lists = resp.data;
+        }, function (resp) {
+            cfgService.httpErrorCallback(resp);
+        }).finally(function() {
+            cfgService.hideSpinner();
         });
+
+        console.log("contact_listController is running now... Done.");
+    });
