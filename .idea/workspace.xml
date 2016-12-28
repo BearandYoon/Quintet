@@ -11,7 +11,6 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/conference/watched.html" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/main.html" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/controllers/accountSearchController.js" afterPath="$PROJECT_DIR$/app/scripts/controllers/accountSearchController.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/controllers/chartContoller.js" afterPath="$PROJECT_DIR$/app/scripts/controllers/chartContoller.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/controllers/conferenceController.js" afterPath="$PROJECT_DIR$/app/scripts/controllers/conferenceController.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/controllers/conferenceDetailsController.js" afterPath="$PROJECT_DIR$/app/scripts/controllers/conferenceDetailsController.js" />
@@ -81,8 +80,8 @@
       <file leaf-file-name="accountDetailsController.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/scripts/controllers/accountDetailsController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="148">
-              <caret line="55" column="34" lean-forward="true" selection-start-line="55" selection-start-column="34" selection-end-line="55" selection-end-column="34" />
+            <state relative-caret-position="232">
+              <caret line="59" column="10" lean-forward="true" selection-start-line="59" selection-start-column="10" selection-end-line="59" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -319,7 +318,7 @@
       <option name="presentableId" value="Default" />
       <updated>1482723335273</updated>
       <workItem from="1490348224152" duration="505000" />
-      <workItem from="1482572805550" duration="532000" />
+      <workItem from="1482572805550" duration="634000" />
     </task>
     <task id="LOCAL-00001" summary="create skeleton project">
       <created>1482741184683</created>
@@ -391,11 +390,18 @@
       <option name="project" value="LOCAL" />
       <updated>1482746131156</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="changed accountSearchController">
+      <created>1482746154606</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1482746154606</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1037000" />
+    <option name="totallyTimeSpent" value="1139000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="979" extended-state="6" />
@@ -465,7 +471,8 @@
     <MESSAGE value="update app.js" />
     <MESSAGE value="update test module" />
     <MESSAGE value="changed accountDetailsController" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed accountDetailsController" />
+    <MESSAGE value="changed accountSearchController" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed accountSearchController" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -814,8 +821,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/controllers/accountDetailsController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="55" column="34" lean-forward="true" selection-start-line="55" selection-start-column="34" selection-end-line="55" selection-end-column="34" />
+        <state relative-caret-position="232">
+          <caret line="59" column="10" lean-forward="true" selection-start-line="59" selection-start-column="10" selection-end-line="59" selection-end-column="10" />
           <folding />
         </state>
       </provider>

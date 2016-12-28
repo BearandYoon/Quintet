@@ -1,16 +1,16 @@
 'use strict';
 /**
  * @ngdoc function
- * @name Quintet.controller:chartController
+ * @name sbAdminApp.controller:chartController
  * @description
  * # MainCtrl
- * Controller of the Quintet
+ * Controller of the sbAdminApp
  */
-angular.module('Quintet')
-    .controller('chartController', function (mainService, $scope, $timeout, $http, $state) {
+angular.module('sbAdminApp')
+    .controller('chartController', function (cfgService, $scope, $timeout, $http, $state) {
         $scope.account = {};
-        $scope.account.wkn = mainService.getUserInfo().account_wkn;
-        $scope.account.wkn_tv = mainService.getUserInfo().account_wkn_tv;
+        $scope.account.wkn = cfgService.getUserInfo().account_wkn;
+        $scope.account.wkn_tv = cfgService.getUserInfo().account_wkn_tv;
         $scope.peer_group = [];
         $scope.ownership;
 
@@ -59,11 +59,11 @@ angular.module('Quintet')
             var promise = $http({
                 method: "GET",
                 cache: false,
-                url: mainService.getControllerUrl() + "/account/stocktwits",
+                url: cfgService.getControllerUrl() + "/account/stocktwits",
                 params: {
                     wkn: wkn,
                     limit: 10,
-                    token: mainService.getToken()
+                    token: cfgService.getToken()
                 }
             }).then(function (resp) {
                 // console.log("RESPONSE STOCKTWITS:");
@@ -71,7 +71,7 @@ angular.module('Quintet')
 
                 $scope.stocktwits = resp.data.messages;
             }, function (resp) {
-                mainService.httpErrorCallback(resp);
+                cfgService.httpErrorCallback(resp);
             });
         };
 
@@ -80,9 +80,9 @@ angular.module('Quintet')
             var promise = $http({
                 method: "GET",
                 cache: false,
-                url: mainService.getControllerUrl() + "/peer_group/index",
+                url: cfgService.getControllerUrl() + "/peer_group/index",
                 params: {
-                    token: mainService.getToken(),
+                    token: cfgService.getToken(),
                     no_quotes: 'true'
                 }
             }).then(function (resp) {
@@ -148,36 +148,36 @@ angular.module('Quintet')
                     "height": "339px"
                 });
             }, function (resp) {
-                mainService.httpErrorCallback(resp);
+                cfgService.httpErrorCallback(resp);
             });
         };
 
-        mainService.showSpinner("Loading data...");
+        cfgService.showSpinner("Loading data...");
 
         // Load numbers for Dashboard
         var promise_a = $http({
             method: "GET",
             cache: false,
-            url: mainService.getControllerUrl() + "/stats/index",
+            url: cfgService.getControllerUrl() + "/stats/index",
             params: {
-                token: mainService.getToken()
+                token: cfgService.getToken()
             }
         }).then(function (resp) {
             console.log("RESPONSE-1: ", resp);
             $scope.stats = resp.data.stats;
         }, function (resp) {
-            mainService.httpErrorCallback(resp);
+            cfgService.httpErrorCallback(resp);
         }).finally(function () {
-            mainService.hideSpinner();
+            cfgService.hideSpinner();
         });
 
         // Dashboard (Zahlen) laden
         var promise_b = $http({
             method: "GET",
             cache: false,
-            url: mainService.getControllerUrl() + "/stats/meetings_feedacks",
+            url: cfgService.getControllerUrl() + "/stats/meetings_feedacks",
             params: {
-                token: mainService.getToken()
+                token: cfgService.getToken()
             }
         }).then(function (resp) {
             console.log("RESPONSE-2 : ", resp);
@@ -185,23 +185,23 @@ angular.module('Quintet')
             $scope.line.series = resp.data.series;
             $scope.line.data = resp.data.data;
         }, function (resp) {
-            mainService.httpErrorCallback(resp);
+            cfgService.httpErrorCallback(resp);
         });
 
         var promise_c = $http({
             method: "GET",
             cache: false,
-            url: mainService.getControllerUrl() + "/account/ownership",
+            url: cfgService.getControllerUrl() + "/account/ownership",
             params: {
                 id: "MINE",
-                token: mainService.getToken()
+                token: cfgService.getToken()
             }
         }).then(function (resp) {
             console.log("RESPONSE OWNERSHIP = :", resp);
             $scope.ownership = resp.data;
             // console.log($scope.ownership);
         }, function (resp) {
-            mainService.httpErrorCallback(resp);
+            cfgService.httpErrorCallback(resp);
         });
 
         loadStockChart($scope.account.wkn_tv);
