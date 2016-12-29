@@ -1,13 +1,13 @@
 'use strict';
 /**
  * @ngdoc function
- * @name Quintet.controller:contactSearchController
+ * @name sbAdminApp.controller:contactSearchController
  * @description
  * # MainCtrl
- * Controller of the Quintet
+ * Controller of the sbAdminApp
  */
-angular.module('Quintet')
-    .controller('contactSearchController', function (mainService, $scope, $http, ContactService) {
+angular.module('sbAdminApp')
+    .controller('contactSearchController', function (cfgService, $scope, $http, ContactService) {
         $scope.contacts = [];
         $scope.contact_lists = [];
         $scope.selected_contact_ids = [];
@@ -15,13 +15,13 @@ angular.module('Quintet')
         $scope.hasDisplayedSpinner = false;
 
         // Letzte query laden, anzeigewert dafür festlegen
-        $scope.query = (mainService.cache.contactSearchController_last_query) ? mainService.cache.contactSearchController_last_query : "";
+        $scope.query = (cfgService.cache.contactSearchController_last_query) ? cfgService.cache.contactSearchController_last_query : "";
 
         $scope.runQuery = function () {
             console.log("Update is running for query = ", $scope.query);
 
             var query = $scope.query.trim();
-            mainService.cache.contactSearchController_last_query = query;
+            cfgService.cache.contactSearchController_last_query = query;
 
             // Wenn Query leer, dann nach Favoriten etc. suchen
             if (query === "") {
@@ -36,7 +36,7 @@ angular.module('Quintet')
                 }
 
                 if ($scope.hasDisplayedSpinner) {
-                    mainService.hideSpinner();
+                    cfgService.hideSpinner();
                     $scope.hasDisplayedSpinner = false;
                 }
                 $scope.loading = false;
@@ -75,7 +75,7 @@ angular.module('Quintet')
             var result = confirm("Are you sure to add " + $scope.selected_contact_ids.length + " contacts to " + list_name + "?");
             if (result) {
                 // Now add the contacts to the list.
-                mainService.showSpinner("Adding contacts to list...");
+                cfgService.showSpinner("Adding contacts to list...");
 
                 ContactService.addToContactList(query, function(response) {
                     if(response) {
@@ -115,7 +115,17 @@ angular.module('Quintet')
         }
 
         getContactList();
-        mainService.showSpinner("Loading Accounts...");
+        cfgService.showSpinner("Loading Contacts...");
         $scope.hasDisplayedSpinner = true;
         $scope.runQuery();
+
+        $scope.getFavoriteContacts = function() {
+            ContactService.getFavoriteContacts(function(response) {
+                if(response) {
+                    $scope.favorite_contacts = response;
+                }
+            });
+        };
+
+        $scope.getFavoriteContacts();
     });
