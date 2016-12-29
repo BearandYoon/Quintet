@@ -1,13 +1,13 @@
 'use strict';
 /**
  * @ngdoc function
- * @name Quintet.controller:contactListEditController
+ * @name sbAdminApp.controller:contactListEditController
  * @description
  * # MainCtrl
- * Controller of the Quintet
+ * Controller of the sbAdminApp
  */
-angular.module('Quintet')
-        .controller('contactListEditController', function (mainService, $scope, $state, $http, $stateParams) {
+angular.module('sbAdminApp')
+        .controller('contactListEditController', function (cfgService, $scope, $state, $http, $stateParams) {
 
             $scope.id = $stateParams.id;
             $scope.contact_list = {};
@@ -20,14 +20,14 @@ angular.module('Quintet')
                 console.log("Now changing...");
 
                 var data = $scope.contact_list;
-                data.token = mainService.getToken();
-
-                mainService.showSpinner("Saving data...");
+                data.token = cfgService.getToken();
+                
+                cfgService.showSpinner("Saving data...");
 
                 var promise = $http({
                     method: "PUT",
                     // cache: false,
-                    url: mainService.getControllerUrl() + "/contact_list/index",
+                    url: cfgService.getControllerUrl() + "/contact_list/index",
                     data: data,
                 }).then(function (resp) {
                     console.log("RESPONSE: " + resp.data);
@@ -38,23 +38,23 @@ angular.module('Quintet')
                         alert(resp.data.replace("ERROR ", ""));
                     }
                 }, function (resp) {
-                    mainService.httpErrorCallback(resp);
+                    cfgService.httpErrorCallback(resp);
                 }).finally(function () {
-                    mainService.hideSpinner();
+                    cfgService.hideSpinner();
                 });
             };
 
             console.log("contactListEditController is running now...");
-
-            mainService.showSpinner("Loading data...");
+            
+            cfgService.showSpinner("Loading data...");
             if ($scope.id && $scope.id > 0) {
                 var promise = $http({
                     method: "GET",
                     cache: false,
-                    url: mainService.getControllerUrl() + "/contact_list/index",
+                    url: cfgService.getControllerUrl() + "/contact_list/index",
                     params: {
                         id: $stateParams.id,
-                        token: mainService.getToken(),
+                        token: cfgService.getToken(),
                         no_contacts: true,
                     }
                 }).then(function (resp) {
@@ -65,9 +65,9 @@ angular.module('Quintet')
 
                     console.log("Data loaded!");
                 }, function (resp) {
-                    mainService.httpErrorCallback(resp);
+                    cfgService.httpErrorCallback(resp);
                 }).finally(function () {
-                    mainService.hideSpinner();
+                    cfgService.hideSpinner();
                 });
             }
 
