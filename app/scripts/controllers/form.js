@@ -1,12 +1,12 @@
 'use strict';
 /**
  * @ngdoc function
- * @name Quintet.controller:FormCtrl
+ * @name sbAdminApp.controller:FormCtrl
  * @description
  * # MainCtrl
- * Controller of the Quintet
+ * Controller of the sbAdminApp
  */
-angular.module('Quintet')
+angular.module('sbAdminApp')
         .controller('FormCtrl', function ($scope) {
             console.log("FormCtrl is running now...");
         });
