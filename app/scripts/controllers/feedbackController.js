@@ -1,13 +1,13 @@
 'use strict';
 /**
  * @ngdoc function
- * @name Quintet.controller:meetingController
+ * @name sbAdminApp.controller:meetingController
  * @description
  * # MainCtrl
- * Controller of the Quintet
+ * Controller of the sbAdminApp
  */
-angular.module('Quintet')
-        .controller('feedbackController', function ($scope, $state, $http, $stateParams, mainService) {
+angular.module('sbAdminApp')
+        .controller('feedbackController', function ($scope, $state, $http, $stateParams, cfgService) {
             // Erstmal prüfen, ob ein Quartal angegeben wurde. Wenn nein, dann FUTURE nehmen!
             console.log("Quarter ist " + $stateParams.quarter);
             if (!$stateParams.quarter) {
@@ -36,31 +36,31 @@ angular.module('Quintet')
 
             console.log("meetingController is running now...");
 
-            mainService.showSpinner("Loading Meetings...");
+            cfgService.showSpinner("Loading Meetings...");
 
             /** Loads all available quarters */
             var promise = $http({
                 method: "GET",
                 cache: false,
-                url: mainService.getControllerUrl() + "/feedback/quarters",
+                url: cfgService.getControllerUrl() + "/feedback/quarters",
                 params: {
-                    token: mainService.getToken(),
+                    token: cfgService.getToken(),
                 }
             }).then(function (resp) {
                 console.log("RESPONSE: " + resp);
                 console.log(resp.data);
                 $scope.quarters = resp.data;
             }, function (resp) {
-                mainService.httpErrorCallback(resp);
+                cfgService.httpErrorCallback(resp);
             });
 
             /** Loads all the meetings in the quarter */
             var promise = $http({
                 method: "GET",
                 cache: false,
-                url: mainService.getControllerUrl() + "/feedback/index",
+                url: cfgService.getControllerUrl() + "/feedback/index",
                 params: {
-                    token: mainService.getToken(),
+                    token: cfgService.getToken(),
                     quarter: $stateParams.quarter
                 }
             }).then(function (resp) {
@@ -68,9 +68,9 @@ angular.module('Quintet')
                 console.log(resp.data);
                 $scope.feedbacks = resp.data;
             }, function (resp) {
-                mainService.httpErrorCallback(resp);
+                cfgService.httpErrorCallback(resp);
             }).finally(function () {
-                mainService.hideSpinner();
+                cfgService.hideSpinner();
             });
 
             console.log("meetingController is running now... Done.");
